@@ -4,46 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Golf Scramble Live Leaderboard</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    h1 { color: #2c3e50; }
-    ul { list-style: none; padding: 0; }
-    li { padding: 5px 0; border-bottom: 1px solid #ccc; }
-  </style>
+
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Socket.IO client -->
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 </head>
 <body>
-  <h1>Live Leaderboard</h1>
+  <h1>🏌️ Live Leaderboard</h1>
   <ul id="leaderboard"></ul>
 
-  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-  <script>
-    const leaderboardEl = document.getElementById('leaderboard');
-
-    // Connect to your backend
-    const socket = io('https://golf-scramble-backend.onrender.com');
-
-    // Listen for leaderboard updates
-    socket.on('leaderboardUpdate', (data) => {
-      console.log('Updated leaderboard:', data);
-      leaderboardEl.innerHTML = '';
-      data.forEach(team => {
-        const li = document.createElement('li');
-        li.textContent = `${team.name} — ${team.score_relative_to_par}`;
-        leaderboardEl.appendChild(li);
-      });
-    });
-
-    // Load initial leaderboard once when page loads
-    fetch('https://golf-scramble-backend.onrender.com/leaderboard')
-      .then(res => res.json())
-      .then(data => {
-        leaderboardEl.innerHTML = '';
-        data.forEach(team => {
-          const li = document.createElement('li');
-          li.textContent = `${team.name} — ${team.score_relative_to_par}`;
-          leaderboardEl.appendChild(li);
-        });
-      });
-  </script>
+  <!-- Link to external JS -->
+  <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+

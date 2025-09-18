@@ -1,0 +1,37 @@
+:root {
+  --forest-green: #228B22;
+  --sandstone: #E6D5B8;
+  --sky-blue: #A7C7E7;
+  --bark-brown: #5C4033;
+  --cream: #FAF9F6;
+  --gold: #D4AF37;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: var(--cream);
+  color: var(--bark-brown);
+}
+
+h1 {
+  color: var(--forest-green);
+  text-align: center;
+  border-bottom: 3px solid var(--gold);
+  padding-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: var(--sandstone);
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 6px solid var(--forest-green);
+  font-weight: bold;
+  color: var(--bark-brown);
+}
