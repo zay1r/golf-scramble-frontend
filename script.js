@@ -93,6 +93,12 @@ async function loadHoles() {
   try {
     const res = await fetch(`${API_BASE}/holes`);
     holes = await res.json();
+
+    if (!Array.isArray(holes) || holes.length === 0) {
+      console.error('No holes returned from backend');
+      return;
+    }
+
     currentHoleIndex = 0;
     displayHole();
   } catch (err) {
@@ -102,6 +108,10 @@ async function loadHoles() {
 
 function displayHole() {
   const hole = holes[currentHoleIndex];
+  if (!hole) {
+    console.error('No hole data for index', currentHoleIndex);
+    return;
+  }
   document.getElementById('hole-number').textContent = hole.hole_number;
   document.getElementById('hole-par').textContent = hole.par;
   document.getElementById('hole-distance').textContent = hole.distance || 'N/A';
@@ -111,6 +121,8 @@ function displayHole() {
 
 async function submitScore() {
   const hole = holes[currentHoleIndex];
+  if (!hole) return; // safety check
+
   const strokes = parseInt(strokesInput.value);
   if (!strokes) return;
 
@@ -125,12 +137,14 @@ async function submitScore() {
     });
 
     if (!res.ok) throw new Error('Score submission failed');
+    console.log(`Score submitted for Hole ${hole.hole_number}: ${strokes} strokes`);
   } catch (err) {
     console.error(err);
     alert('Error submitting score.');
   }
 }
 
+// Prev button: submit then move back
 document.getElementById('prev-hole').addEventListener('click', async () => {
   await submitScore();
   if (currentHoleIndex > 0) {
@@ -139,6 +153,7 @@ document.getElementById('prev-hole').addEventListener('click', async () => {
   }
 });
 
+// Next button: submit then move forward
 document.getElementById('next-hole').addEventListener('click', async () => {
   await submitScore();
   if (currentHoleIndex < holes.length - 1) {
@@ -146,10 +161,4 @@ document.getElementById('next-hole').addEventListener('click', async () => {
     displayHole();
   }
 });
-
-document.getElementById('score-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  await submitScore();
-});
-
 
