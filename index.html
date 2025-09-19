@@ -19,10 +19,14 @@
 <section id="login-section">
   <h2>Team Login</h2>
   <form id="login-form">
-    <input type="text" id="team_name" placeholder="Team Name" required />
-    <input type="password" id="pin" placeholder="PIN" required />
-    <button type="submit">Login</button>
-  </form>
+  <select id="team_name" required>
+    <option value="">Select your team</option>
+    <!-- JS will populate options here -->
+  </select>
+  <input type="password" id="pin" placeholder="PIN" required />
+  <button type="submit">Login</button>
+</form>
+
 </section>
 
 <!-- Score Submission Section -->
