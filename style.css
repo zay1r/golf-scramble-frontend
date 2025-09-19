@@ -36,24 +36,34 @@ li {
   color: var(--bark-brown);
 }
 
-/* Leaderboard medal colors */
+#leaderboard {
+  list-style: none;
+  padding: 0;
+}
+
+#leaderboard li {
+  padding: 8px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Medal colors */
 #leaderboard .first-place {
   background-color: gold;
-  color: var(--bark-brown);
-  font-weight: bold;
+  color: var(--bark-brown); /* or black for contrast */
 }
 
 #leaderboard .second-place {
   background-color: silver;
   color: var(--bark-brown);
-  font-weight: bold;
 }
 
 #leaderboard .third-place {
   background-color: #cd7f32; /* bronze */
   color: var(--bark-brown);
-  font-weight: bold;
 }
+
 
 
 /* Mobile-first form styling */

@@ -8,7 +8,9 @@ function renderLeaderboard(data) {
   leaderboardEl.innerHTML = '';
   data.forEach((team, index) => {
     const li = document.createElement('li');
-    li.textContent = `${team.name} ${team.score_relative_to_par}`;
+    const score = team.score_relative_to_par;
+    const formattedScore = score > 0 ? `+${score}` : score; 
+    li.textContent = `${team.name} ${formattedScore}`;
 
     // Add special class for top 3
     if (index === 0) li.classList.add('first-place');
@@ -18,6 +20,7 @@ function renderLeaderboard(data) {
     leaderboardEl.appendChild(li);
   });
 }
+
 
 
 
