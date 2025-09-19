@@ -31,15 +31,16 @@ const loginForm = document.getElementById('login-form');
 const loginSection = document.getElementById('login-section');
 let authToken = null;
 
-// Populate team dropdown
+// Populate team dropdown from DB
 fetch(`${API_BASE}/teams`)
   .then(res => res.json())
   .then(teams => {
     const teamSelect = document.getElementById('team_name');
+    teamSelect.innerHTML = '<option value="">Select your team</option>'; // reset
     teams.forEach(team => {
       const option = document.createElement('option');
-      option.value = team.name;
-      option.textContent = team.name;
+      option.value = team.name.trim(); // ensure no hidden spaces
+      option.textContent = team.name.trim();
       teamSelect.appendChild(option);
     });
   })
@@ -48,8 +49,8 @@ fetch(`${API_BASE}/teams`)
 // Handle login
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const team_name = document.getElementById('team_name').value;
-  const pin = document.getElementById('pin').value;
+  const team_name = document.getElementById('team_name').value.trim();
+  const pin = document.getElementById('pin').value.trim();
 
   try {
     const res = await fetch(`${API_BASE}/login`, {
