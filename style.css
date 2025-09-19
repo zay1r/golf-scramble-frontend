@@ -36,6 +36,26 @@ li {
   color: var(--bark-brown);
 }
 
+/* Leaderboard medal colors */
+#leaderboard .first-place {
+  background-color: gold;
+  color: var(--bark-brown);
+  font-weight: bold;
+}
+
+#leaderboard .second-place {
+  background-color: silver;
+  color: var(--bark-brown);
+  font-weight: bold;
+}
+
+#leaderboard .third-place {
+  background-color: #cd7f32; /* bronze */
+  color: var(--bark-brown);
+  font-weight: bold;
+}
+
+
 /* Mobile-first form styling */
 form {
   display: flex;
