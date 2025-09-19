@@ -8,7 +8,7 @@ function renderLeaderboard(data) {
   leaderboardEl.innerHTML = '';
   data.forEach(team => {
     const li = document.createElement('li');
-    li.textContent = `${team.name} -${team.score_relative_to_par}`;
+    li.textContent = `${team.name} ${team.score_relative_to_par}`;
     leaderboardEl.appendChild(li);
 
     
