@@ -47,7 +47,7 @@ form {
   border-radius: 6px;
 }
 
-input, button {
+input, button, select {
   padding: 12px;
   font-size: 1rem;
   border: 1px solid var(--bark-brown);
@@ -62,6 +62,7 @@ button {
   font-weight: bold;
   border: none;
   cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 button:hover {
@@ -69,6 +70,7 @@ button:hover {
   color: var(--bark-brown);
 }
 
+/* Score section styling */
 #score-section form {
   display: flex;
   flex-direction: column;
@@ -106,10 +108,39 @@ button:hover {
   color: var(--bark-brown);
 }
 
+/* Hole info block */
+#hole-info {
+  background: var(--sandstone);
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 5px solid var(--forest-green);
+  margin-bottom: 10px;
+}
+
+#hole-info p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+/* Navigation buttons container */
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-buttons button {
+  flex: 1;
+}
 
 /* Responsive tweaks for larger screens */
 @media (min-width: 600px) {
   form {
-    max-width: 300px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  #score-section form {
+    max-width: 400px;
+    margin: 0 auto;
   }
 }

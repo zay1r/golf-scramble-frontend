@@ -75,27 +75,44 @@ loginForm.addEventListener('submit', async (e) => {
 
 // -------------------- Score Submission --------------------
 const scoreSection = document.getElementById('score-section');
-const scoreForm = document.getElementById('score-form');
-const holeSelect = document.getElementById('hole_id');
+//const scoreForm = document.getElementById('score-form');
+//const holeSelect = document.getElementById('hole_id');
 
-// Populate hole dropdown
-for (let i = 1; i <= 18; i++) {
-  const option = document.createElement('option');
-  option.value = i;
-  option.textContent = `Hole ${i}`;
-  holeSelect.appendChild(option);
-}
+const strokesInput = document.getElementById('strokes');
+let holes = [];
+let currentHoleIndex = 0;
 
 // Show score form after login
 function showScoreForm() {
   scoreSection.style.display = 'block';
 }
 
-// Handle score submission
-scoreForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const hole_id = parseInt(holeSelect.value);
-  const strokes = parseInt(document.getElementById('strokes').value);
+
+
+async function loadHoles() {
+  try {
+    const res = await fetch(`${API_BASE}/holes`);
+    holes = await res.json();
+    currentHoleIndex = 0;
+    displayHole();
+  } catch (err) {
+    console.error('Error fetching holes:', err);
+  }
+}
+
+function displayHole() {
+  const hole = holes[currentHoleIndex];
+  document.getElementById('hole-number').textContent = hole.hole_number;
+  document.getElementById('hole-par').textContent = hole.par;
+  document.getElementById('hole-distance').textContent = hole.distance || 'N/A';
+  document.getElementById('hole-special').textContent = hole.special_label || '';
+  strokesInput.value = '';
+}
+
+async function submitScore() {
+  const hole = holes[currentHoleIndex];
+  const strokes = parseInt(strokesInput.value);
+  if (!strokes) return;
 
   try {
     const res = await fetch(`${API_BASE}/score`, {
@@ -104,16 +121,35 @@ scoreForm.addEventListener('submit', async (e) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${authToken}`
       },
-      body: JSON.stringify({ hole_id, strokes })
+      body: JSON.stringify({ hole_id: hole.id, strokes })
     });
 
     if (!res.ok) throw new Error('Score submission failed');
-    alert(`Score submitted for Hole ${hole_id}: ${strokes} strokes`);
-
-    scoreForm.reset();
-
   } catch (err) {
     console.error(err);
     alert('Error submitting score.');
   }
+}
+
+document.getElementById('prev-hole').addEventListener('click', async () => {
+  await submitScore();
+  if (currentHoleIndex > 0) {
+    currentHoleIndex--;
+    displayHole();
+  }
 });
+
+document.getElementById('next-hole').addEventListener('click', async () => {
+  await submitScore();
+  if (currentHoleIndex < holes.length - 1) {
+    currentHoleIndex++;
+    displayHole();
+  }
+});
+
+document.getElementById('score-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  await submitScore();
+});
+
+
