@@ -6,15 +6,19 @@ let savedScores = {}; // { hole_id: strokes }
 // -------------------- Leaderboard --------------------
 function renderLeaderboard(data) {
   leaderboardEl.innerHTML = '';
-  data.forEach(team => {
+  data.forEach((team, index) => {
     const li = document.createElement('li');
     li.textContent = `${team.name} ${team.score_relative_to_par}`;
+
+    // Add special class for top 3
+    if (index === 0) li.classList.add('first-place');
+    else if (index === 1) li.classList.add('second-place');
+    else if (index === 2) li.classList.add('third-place');
+
     leaderboardEl.appendChild(li);
-
-    
-
   });
 }
+
 
 
 
