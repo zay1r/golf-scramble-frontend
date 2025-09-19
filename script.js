@@ -1,6 +1,8 @@
 const API_BASE = 'https://golf-scramble-backend.onrender.com';
 const leaderboardEl = document.getElementById('leaderboard');
 
+let savedScores = {}; // { hole_id: strokes }
+
 // -------------------- Leaderboard --------------------
 function renderLeaderboard(data) {
   leaderboardEl.innerHTML = '';
@@ -65,6 +67,7 @@ loginForm.addEventListener('submit', async (e) => {
 
     loginSection.style.display = 'none';
     showScoreForm();
+    await loadSavedScores(data.team_id);
     await loadHoles(); 
     displayHole();
     alert(`Welcome, ${team_name}! You are now logged in.`);
@@ -74,6 +77,23 @@ loginForm.addEventListener('submit', async (e) => {
     alert('Invalid team name or PIN.');
   }
 });
+
+async function loadSavedScores(team_id) {
+  try {
+    const res = await fetch(`${API_BASE}/scores/${team_id}`);
+    const scores = await res.json();
+    savedScores = {};
+    scores.forEach(s => {
+      if (s.strokes) {
+        savedScores[s.hole_id] = s.strokes;
+      }
+    });
+  } catch (err) {
+    console.error('Error fetching saved scores:', err);
+  }
+}
+
+
 
 // -------------------- Score Submission --------------------
 const scoreSection = document.getElementById('score-section');
@@ -118,7 +138,7 @@ function displayHole() {
   document.getElementById('hole-par').textContent = hole.par;
   document.getElementById('hole-distance').textContent = hole.distance || 'N/A';
   document.getElementById('hole-special').textContent = hole.special_label || '';
-  strokesInput.value = '';
+  strokesInput.value = savedScores[hole.id] ||'';
 }
 
 async function submitScore() {
@@ -139,6 +159,7 @@ async function submitScore() {
     });
 
     if (!res.ok) throw new Error('Score submission failed');
+    savedScores[hole.id] = strokes;
     console.log(`Score submitted for Hole ${hole.hole_number}: ${strokes} strokes`);
   } catch (err) {
     console.error(err);
