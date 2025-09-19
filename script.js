@@ -66,6 +66,7 @@ loginForm.addEventListener('submit', async (e) => {
     loginSection.style.display = 'none';
     showScoreForm();
     await loadHoles(); 
+    displayHole();
     alert(`Welcome, ${team_name}! You are now logged in.`);
 
   } catch (err) {
