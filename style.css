@@ -35,3 +35,81 @@ li {
   font-weight: bold;
   color: var(--bark-brown);
 }
+
+/* Mobile-first form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+  background: var(--sky-blue);
+  padding: 15px;
+  border-radius: 6px;
+}
+
+input, button {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid var(--bark-brown);
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background: var(--forest-green);
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--gold);
+  color: var(--bark-brown);
+}
+
+#score-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--sky-blue);
+  padding: 15px;
+  border-radius: 6px;
+}
+
+#score-section label {
+  font-weight: bold;
+}
+
+#score-section input,
+#score-section select,
+#score-section button {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid var(--bark-brown);
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#score-section button {
+  background: var(--forest-green);
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+#score-section button:hover {
+  background: var(--gold);
+  color: var(--bark-brown);
+}
+
+
+/* Responsive tweaks for larger screens */
+@media (min-width: 600px) {
+  form {
+    max-width: 300px;
+  }
+}
