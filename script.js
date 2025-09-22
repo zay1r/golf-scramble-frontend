@@ -187,16 +187,21 @@ document.getElementById('prev-hole').addEventListener('click', async () => {
   await submitScore();
   if (currentHoleIndex > 0) {
     currentHoleIndex--;
+}else{
+    currentHoleIndex = holes.length - 1;
+    }
     displayHole();
-  }
+  
 });
 
 // Next button: submit then move forward
 document.getElementById('next-hole').addEventListener('click', async () => {
   await submitScore();
   if (currentHoleIndex < holes.length - 1) {
-    currentHoleIndex++;
+    currentHoleIndex++;}else{
+    currentHoleIndex = 0;
+    }
     displayHole();
-  }
+  
 });
 
