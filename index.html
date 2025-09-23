@@ -36,23 +36,29 @@
 <section id="score-section" style="display:none;">
   <h2>Submit Score</h2>
 
-  <div id="hole-info">
+  
+    <form id="score-form">
     <p><strong>Hole:</strong> <span id="hole-number"></span></p>
     <p><strong>Par:</strong> <span id="hole-par"></span></p>
     <p><strong>Distance:</strong> <span id="hole-distance"></span> yards</p>
     <p><strong>Special:</strong> <span id="hole-special"></span></p>
-  </div>
-
-  <form id="score-form">
-    <label for="strokes">Strokes:</label>
-    <input type="number" id="strokes" min="1" required />
-
+  
     <div class="nav-buttons">
-      <button type="button" id="prev-hole">⬅ Previous</button>
+      <button type="button" id="prev-hole">&#10094;</button>
       <!--<button type="submit" id="submit-hole">Submit</button>-->
-      <button type="button" id="next-hole">Next ➡</button>
+      <button type="button" id="next-hole"> &#10095;</button>
     </div>
-  </form>
+  
+    <label for="strokes-value">Strokes:</label>
+    <div class="stroke-buttons">
+        <button type="button" id="decrement-strokes">−</button>
+        <span id="strokes-value"></span>
+        <button type="button" id="increment-strokes">+</button>
+    </div>
+
+
+    </form>
+  
 </section>
 
 

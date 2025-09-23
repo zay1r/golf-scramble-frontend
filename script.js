@@ -7,12 +7,12 @@ let savedScores = {}; // { hole_id: strokes }
 function renderLeaderboard(data) {
   leaderboardEl.innerHTML = '';
   data.forEach((team, index) => {
-    const li = document.createElement('li');
     const score = team.score_relative_to_par;
-    const formattedScore = score > 0 ? `+${score}` : score; 
+    const formattedScore = score > 0 ? `+${score}` : score;
+    const li = document.createElement('li');
     li.textContent = `${team.name} ${formattedScore}`;
 
-    // Add special class for top 3
+    // Medal colors
     if (index === 0) li.classList.add('first-place');
     else if (index === 1) li.classList.add('second-place');
     else if (index === 2) li.classList.add('third-place');
@@ -20,13 +20,6 @@ function renderLeaderboard(data) {
     leaderboardEl.appendChild(li);
   });
 }
-
-
-
-
-
-
-
 
 // Fetch leaderboard on page load
 fetch(`${API_BASE}/leaderboard`)
@@ -36,8 +29,6 @@ fetch(`${API_BASE}/leaderboard`)
 
 // Connect to backend via Socket.IO
 const socket = io(API_BASE);
-
-// Listen for live leaderboard updates
 socket.on('leaderboardUpdate', (data) => {
   console.log('Updated leaderboard:', data);
   renderLeaderboard(data);
@@ -48,15 +39,15 @@ const loginForm = document.getElementById('login-form');
 const loginSection = document.getElementById('login-section');
 let authToken = null;
 
-// Populate team dropdown from DB
+// Populate team dropdown
 fetch(`${API_BASE}/teams`)
   .then(res => res.json())
   .then(teams => {
     const teamSelect = document.getElementById('team_name');
-    teamSelect.innerHTML = '<option value="">Select your team</option>'; // reset
+    teamSelect.innerHTML = '<option value="">Select your team</option>';
     teams.forEach(team => {
       const option = document.createElement('option');
-      option.value = team.name.trim(); // ensure no hidden spaces
+      option.value = team.name.trim();
       option.textContent = team.name.trim();
       teamSelect.appendChild(option);
     });
@@ -83,10 +74,9 @@ loginForm.addEventListener('submit', async (e) => {
     loginSection.style.display = 'none';
     showScoreForm();
     await loadSavedScores(data.team_id);
-    await loadHoles(); 
+    await loadHoles();
     displayHole();
     alert(`Welcome, ${team_name}! You are now logged in.`);
-
   } catch (err) {
     console.error(err);
     alert('Invalid team name or PIN.');
@@ -108,23 +98,15 @@ async function loadSavedScores(team_id) {
   }
 }
 
-
-
 // -------------------- Score Submission --------------------
 const scoreSection = document.getElementById('score-section');
-//const scoreForm = document.getElementById('score-form');
-//const holeSelect = document.getElementById('hole_id');
-
-const strokesInput = document.getElementById('strokes');
+const strokesValueEl = document.getElementById('strokes-value');
 let holes = [];
 let currentHoleIndex = 0;
 
-// Show score form after login
 function showScoreForm() {
   scoreSection.style.display = 'block';
 }
-
-
 
 async function loadHoles() {
   try {
@@ -153,14 +135,29 @@ function displayHole() {
   document.getElementById('hole-par').textContent = hole.par;
   document.getElementById('hole-distance').textContent = hole.distance || 'N/A';
   document.getElementById('hole-special').textContent = hole.special_label || '';
-  strokesInput.value = savedScores[hole.id] ||'';
+
+  const startingStrokes = savedScores[hole.id] || hole.par;
+  strokesValueEl.textContent = startingStrokes;
 }
+
+// Increment/decrement buttons
+document.getElementById('increment-strokes').addEventListener('click', () => {
+  let current = parseInt(strokesValueEl.textContent, 10);
+  strokesValueEl.textContent = current + 1;
+});
+
+document.getElementById('decrement-strokes').addEventListener('click', () => {
+  let current = parseInt(strokesValueEl.textContent, 10);
+  if (current > 1) {
+    strokesValueEl.textContent = current - 1;
+  }
+});
 
 async function submitScore() {
   const hole = holes[currentHoleIndex];
-  if (!hole) return; // safety check
+  if (!hole) return;
 
-  const strokes = parseInt(strokesInput.value);
+  const strokes = parseInt(strokesValueEl.textContent, 10);
   if (!strokes) return;
 
   try {
@@ -182,26 +179,25 @@ async function submitScore() {
   }
 }
 
-// Prev button: submit then move back
+// Prev button: wrap-around
 document.getElementById('prev-hole').addEventListener('click', async () => {
   await submitScore();
   if (currentHoleIndex > 0) {
     currentHoleIndex--;
-}else{
+  } else {
     currentHoleIndex = holes.length - 1;
-    }
-    displayHole();
-  
+  }
+  displayHole();
 });
 
-// Next button: submit then move forward
+// Next button: wrap-around
 document.getElementById('next-hole').addEventListener('click', async () => {
   await submitScore();
   if (currentHoleIndex < holes.length - 1) {
-    currentHoleIndex++;}else{
+    currentHoleIndex++;
+  } else {
     currentHoleIndex = 0;
-    }
-    displayHole();
-  
+  }
+  displayHole();
 });
 

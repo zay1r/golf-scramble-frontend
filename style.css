@@ -7,24 +7,24 @@
   --gold: #D4AF37;
 }
 
-/* Make the whole page fit the viewport */
+/* Page layout */
 html, body {
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* prevent page scroll */
-  display: flex;
-  flex-direction: column;
   background: var(--cream);
   color: var(--bark-brown);
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  /* overflow: hidden;  <-- removed so scrolling works */
 }
 
-/* Main container to hold leaderboard + form */
+/* Main container for leaderboard + other sections */
 .main-container {
   flex: 1;
   display: flex;
-  flex-direction: column; /* stack on mobile */
+  flex-direction: column;
   gap: 20px;
   padding: 20px;
   box-sizing: border-box;
@@ -32,9 +32,9 @@ html, body {
 
 @media (min-width: 800px) {
   .main-container {
-    flex-direction: row; /* side-by-side on larger screens */
+    flex-direction: row;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: flex-start; /* changed from stretch so content can scroll */
   }
 }
 
@@ -54,7 +54,6 @@ h1 {
   background: var(--sandstone);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  overflow-y: auto; /* scroll inside leaderboard if too many teams */
 }
 
 #leaderboard li {
@@ -75,7 +74,7 @@ h1 {
   background: var(--sky-blue);
 }
 
-/* Medal colors for top 3 */
+/* Medal colors */
 #leaderboard .first-place {
   background-color: gold;
   color: var(--bark-brown);
@@ -87,13 +86,97 @@ h1 {
 }
 
 #leaderboard .third-place {
-  background-color: #cd7f32; /* bronze */
+  background-color: #cd7f32;
   color: var(--bark-brown);
 }
 
-/* Modernized Score Section Styling */
+/* Login section styling */
+#login-section {
+  background: var(--sky-blue);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  max-width: 420px;
+  margin: 0 auto 20px;
+}
+
+#login-section h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+#login-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#login-section select,
+#login-section input,
+#login-section button {
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid var(--forest-green);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+#login-section button {
+  background: var(--forest-green);
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#login-section button:hover {
+  background: var(--gold);
+  color: var(--bark-brown);
+}
+
+.stroke-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.stroke-buttons button {
+  flex: 0 0 auto;
+  padding: 10px 16px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  background: var(--forest-green);
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.stroke-buttons button:hover {
+  background: var(--gold);
+  color: var(--bark-brown);
+}
+
+#strokes-value {
+  min-width: 50px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  background: var(--cream);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 2px solid var(--forest-green);
+}
+
+/* Score section styling */
 #score-section {
-  font-size: 1.2rem; /* bigger base font */
+  font-size: 1.2rem;
   flex: 1;
 }
 
@@ -164,7 +247,7 @@ h1 {
   transform: translateY(0);
 }
 
-/* Hole info block - modernized */
+/* Hole info block */
 #hole-info {
   background: var(--sandstone);
   padding: 12px;
@@ -179,7 +262,7 @@ h1 {
   font-size: 1.1rem;
 }
 
-/* Navigation buttons container */
+/* Navigation buttons */
 .nav-buttons {
   display: flex;
   gap: 12px;
@@ -189,7 +272,17 @@ h1 {
   flex: 1;
 }
 
-/* Responsive tweaks for larger screens */
+/* Stroke buttons */
+.stroke-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.stroke-buttons button {
+  flex: 1;
+}
+
+/* Responsive tweaks */
 @media (min-width: 600px) {
   #score-section form {
     max-width: 420px;
