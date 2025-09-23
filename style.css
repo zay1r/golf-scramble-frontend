@@ -30,7 +30,7 @@ html, body {
   box-sizing: border-box;
 }
 
-.score-section{
+#score-section{
     padding: 20px;
 }
 
@@ -300,8 +300,8 @@ h1 {
 }
 
 #score-form p {
-  margin: 6px 0;
-  font-size: 3.5rem;
+  padding: 15px ;
+  font-size: 2.5rem;
 }
 
 
@@ -309,7 +309,7 @@ h1 {
 #hole-number,
 #hole-par,
 #hole-distance{
-  font-size: 4rem;       /* bigger font */
+  font-size: 3rem;       /* bigger font */
   font-weight: bold;     /* thicker text */
   color: var(--forest-green); /* or any color */
 }
