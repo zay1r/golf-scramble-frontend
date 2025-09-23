@@ -31,7 +31,7 @@ function renderLeaderboard(data) {
 
     // Build the list item
     //li.textContent = `${position} — ${team.name} ${formattedScore} `;
-    li.appendChild(scoreSpan);
+    li.appendChild(nameText);
     li.appendChild(scoreSpan);
 
     //li.textContent = `${position} — ${team.name} ${formattedScore}`;
