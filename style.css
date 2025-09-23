@@ -51,9 +51,8 @@ h1 {
   padding: 0;
   margin: 0;
   flex: 1;
-  background: var(--cream);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  
 }
 
 #leaderboard li {
@@ -65,8 +64,9 @@ h1 {
   font-size: 1.2rem;
   font-weight: bold;
   border-radius: 8px;
-  background: var(--cream);
+  background: var(--sandstone);
   transition: transform 0.1s ease, background 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 #leaderboard li:hover {
@@ -164,9 +164,9 @@ h1 {
   align-items: center;
   gap: 10px;
   justify-content: center;
-  margin-top: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin:10px;
+ 
+
 }
 
 .stroke-buttons button {
@@ -220,19 +220,19 @@ h1 {
 }
 
 
-
+/*
 #score-section {
-  /* Base font size for the section (reduced ~1/3 from original) */
+   Base font size for the section (reduced ~1/3 from original) 
+}
+*/
+  
+#score-form{
+  background: linear-gradient(135deg, var(--sky-blue), var(--sandstone));
   font-size: 1.5rem;
   flex: 1;
   padding: 20px; /* Card-like padding around the whole section */
-  background: var(--cream);
   border-radius: 12px; /* Rounded corners for card look */
   box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Soft shadow for depth */
-}
-
-#score-form{
-  background: linear-gradient(135deg, var(--sky-blue), var(--sandstone));
 }
 
 /* Section heading */
