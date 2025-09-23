@@ -51,7 +51,7 @@ h1 {
   padding: 0;
   margin: 0;
   flex: 1;
-  background: var(--sandstone);
+  background: var(--cream);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
@@ -223,17 +223,21 @@ h1 {
 
 #score-section {
   /* Base font size for the section (reduced ~1/3 from original) */
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   flex: 1;
   padding: 20px; /* Card-like padding around the whole section */
-  background: linear-gradient(135deg, var(--sky-blue), var(--sandstone));
+  background: var(--cream);
   border-radius: 12px; /* Rounded corners for card look */
   box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Soft shadow for depth */
 }
 
+#score-form{
+  background: linear-gradient(135deg, var(--sky-blue), var(--sandstone));
+}
+
 /* Section heading */
-#score-section h2 {
-  font-size: 1.1rem; /* Smaller heading */
+#score-form h2 {
+  font-size: 1.5rem; /* Smaller heading */
   font-weight: 800;
   color: var(--forest-green);
   text-align: center;
