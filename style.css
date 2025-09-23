@@ -30,6 +30,10 @@ html, body {
   box-sizing: border-box;
 }
 
+.score-section{
+    padding: 20px;
+}
+
 @media (min-width: 800px) {
   .main-container {
     flex-direction: row;
@@ -212,7 +216,7 @@ h1 {
   flex-direction: column;
   gap: 15px;
   background: linear-gradient(135deg, var(--sky-blue), var(--sandstone));
-  padding: 20px;
+  
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
@@ -281,9 +285,14 @@ h1 {
 
 #hole-number,
 #hole-par,
-#hole-distance,
-#hole-special{
+#hole-distance{
   font-size: 4rem;       /* bigger font */
+  font-weight: bold;     /* thicker text */
+  color: var(--forest-green); /* or any color */
+}
+
+#hole-special{
+  font-size: 2.0rem;       /* bigger font */
   font-weight: bold;     /* thicker text */
   color: var(--forest-green); /* or any color */
 }
@@ -311,9 +320,9 @@ h1 {
 }
 
 /* Responsive tweaks */
-@media (min-width: 600px) {
+@media (min-width: 500px) {
   #score-section form {
-    max-width: 420px;
+    max-width: 400px;
     margin: 0 auto;
   }
 }
