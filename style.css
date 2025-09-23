@@ -276,14 +276,14 @@ h1 {
 
 #hole-info p {
   margin: 6px 0;
-  font-size: 1.1rem;
+  font-size: 2.5rem;
 }
 
 #hole-number,
 #hole-par,
 #hole-distance,
 #hole-special{
-  font-size: 2rem;       /* bigger font */
+  font-size: 4rem;       /* bigger font */
   font-weight: bold;     /* thicker text */
   color: var(--forest-green); /* or any color */
 }

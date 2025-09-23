@@ -20,6 +20,8 @@ function renderLeaderboard(data) {
 
     const li = document.createElement('li');
 
+    const nameText = document.createTextNode(`${position} — ${team.name} `);
+
     // Create score span
     const scoreSpan = document.createElement('span');
     scoreSpan.textContent = formattedScore;
@@ -28,7 +30,8 @@ function renderLeaderboard(data) {
     else scoreSpan.classList.add('score-zero');
 
     // Build the list item
-    li.textContent = `${position} — ${team.name} `;
+    //li.textContent = `${position} — ${team.name} ${formattedScore} `;
+    li.appendChild(scoreSpan);
     li.appendChild(scoreSpan);
 
     //li.textContent = `${position} — ${team.name} ${formattedScore}`;
