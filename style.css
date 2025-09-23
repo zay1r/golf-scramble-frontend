@@ -141,31 +141,52 @@ h1 {
   color: var(--bark-brown);
 }
 
+/* Navigation buttons */
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+  margin-left:5px;
+  margin-right:5px;
+}
+
+.nav-buttons button {
+  flex: 1;
+}
+
+/* Stroke buttons */
 .stroke-buttons {
   display: flex;
   align-items: center;
   gap: 10px;
   justify-content: center;
   margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .stroke-buttons button {
-  flex: 0 0 auto;
-  padding: 10px 16px;
+  width: 50px;              /* equal width & height */
+  height: 50px;
   font-size: 1.4rem;
   font-weight: bold;
   border: none;
-  border-radius: 6px;
+  border-radius: 50%;       /* makes it a circle */
   background: var(--forest-green);
   color: white;
   cursor: pointer;
   transition: background 0.3s ease;
+  display: flex;            /* center text/icon */
+  align-items: center;
+  justify-content: center;
 }
 
 .stroke-buttons button:hover {
   background: var(--gold);
   color: var(--bark-brown);
 }
+
+
+
 
 #strokes-value {
   min-width: 50px;
@@ -278,10 +299,12 @@ h1 {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-#hole-info p {
+#score-form p {
   margin: 6px 0;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
 }
+
+
 
 #hole-number,
 #hole-par,
@@ -299,30 +322,13 @@ h1 {
 
 
 
-/* Navigation buttons */
-.nav-buttons {
-  display: flex;
-  gap: 12px;
-}
 
-.nav-buttons button {
-  flex: 1;
-}
 
-/* Stroke buttons */
-.stroke-buttons {
-  display: flex;
-  gap: 12px;
-}
-
-.stroke-buttons button {
-  flex: 1;
-}
-
-/* Responsive tweaks */
+/* Responsive tweaks 
 @media (min-width: 500px) {
   #score-section form {
     max-width: 400px;
     margin: 0 auto;
   }
 }
+*/
