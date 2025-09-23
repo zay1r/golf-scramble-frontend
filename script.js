@@ -9,8 +9,29 @@ function renderLeaderboard(data) {
   data.forEach((team, index) => {
     const score = team.score_relative_to_par;
     const formattedScore = score > 0 ? `+${score}` : score;
+
+    // Position string
+    let position;
+    if (index === 0) position = '1st';
+    else if (index === 1) position = '2nd';
+    else if (index === 2) position = '3rd';
+    else position = `${index + 1}th`;
+
+
     const li = document.createElement('li');
-    li.textContent = `${team.name} ${formattedScore}`;
+
+    // Create score span
+    const scoreSpan = document.createElement('span');
+    scoreSpan.textContent = formattedScore;
+    if (score > 0) scoreSpan.classList.add('score-positive');
+    else if (score < 0) scoreSpan.classList.add('score-negative');
+    else scoreSpan.classList.add('score-zero');
+
+    // Build the list item
+    li.textContent = `${position} — ${team.name} `;
+    li.appendChild(scoreSpan);
+
+    //li.textContent = `${position} — ${team.name} ${formattedScore}`;
 
     // Medal colors
     if (index === 0) li.classList.add('first-place');
