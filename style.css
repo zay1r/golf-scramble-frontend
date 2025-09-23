@@ -223,12 +223,13 @@ h1 {
 
 #score-section {
    background-color: var(--cream);
+   padding: 20px;
 }
 #score-form{
   background: linear-gradient(135deg, var(--sky-blue), var(--sandstone));
   font-size: 1.5rem;
   flex: 1;
-  padding: 20px; /* Card-like padding around the whole section */
+   /* Card-like padding around the whole section */
   border-radius: 12px; /* Rounded corners for card look */
   box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Soft shadow for depth */
 }
