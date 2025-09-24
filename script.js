@@ -2,7 +2,7 @@ const API_BASE = 'https://golf-scramble-backend.onrender.com';
 
 // -------------------- Leaderboard --------------------
 const leaderboardEl = document.getElementById('leaderboard');
-const leaderboardContainer = document.getElementById('leaderboard-container');
+const leaderboardContainer = document.getElementById('main-container');
 const prevBtn = document.getElementById('leaderboard-prev');
 const nextBtn = document.getElementById('leaderboard-next');
 const indicatorsEl = document.getElementById('leaderboard-indicators');

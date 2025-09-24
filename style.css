@@ -20,87 +20,10 @@ html, body {
   /* overflow: hidden;  <-- removed so scrolling works */
 }
 
-/* Main container for leaderboard + other sections */
-#leaderboard-container {
-  position: relative;
-  flex: 1;
-  max-height: 300px; /* adjust to how many rows you want visible */
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 12px;
-  background: var(--sandstone);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-@media (min-width: 800px) {
-  #leaderboard-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start; /* changed from stretch so content can scroll */
-  }
-}
-
-h1 {
-  color: var(--forest-green);
-  text-align: center;
-  border-bottom: 3px solid var(--gold);
-  padding-bottom: 10px;
-}
-
-
-/* Leaderboard styling */
-#leaderboard {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex: 1;
-  border-radius: 12px;
-  transition: transform 0.6s ease-in-out;
-}
-
-#leaderboard li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  margin: 4px 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 8px;
-  background: var(--sandstone);
-  transition: transform 0.1s ease, background 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-#leaderboard li:hover {
-  transform: translateY(-2px);
-  background: var(--sky-blue);
-}
-
-/* === Page indicators (dots) === */
-#leaderboard-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 0;
-}
-.indicator-dot {
-  width: 10px;
-  height: 10px;
-  background: var(--bark-brown);
-  border-radius: 50%;
-  opacity: 0.4;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-.indicator-dot.active {
-  opacity: 1;
-  background: var(--forest-green);
-}
+/* Score coloring */
+.score-positive { color: red; font-weight: bold; }
+.score-negative { color: green; font-weight: bold; }
+.score-zero     { color: var(--bark-brown); font-weight: bold; }
 
 /* === Leaderboard navigation buttons (desktop only) === */
 .leaderboard-nav {
@@ -127,6 +50,83 @@ h1 {
 
 @media (min-width: 768px) {
   .leaderboard-nav { display: block; }
+}
+
+
+/* Main container for leaderboard + other sections */
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 800px) {
+  .main-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start; /* changed from stretch so content can scroll */
+  }
+}
+
+h1 {
+  color: var(--forest-green);
+  text-align: center;
+  border-bottom: 3px solid var(--gold);
+  padding-bottom: 10px;
+}
+
+
+/* Leaderboard styling */
+#leaderboard {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  border-radius: 12px;
+  
+}
+
+#leaderboard li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin: 4px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  background: var(--sandstone);
+  transition: transform 0.1s ease, background 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+#leaderboard li:hover {
+  transform: translateY(-2px);
+  background: var(--sky-blue);
+}
+
+#leaderboard-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 0;
+}
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--bark-brown);
+  border-radius: 50%;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.indicator-dot.active {
+  opacity: 1;
+  background: var(--forest-green);
+}
 
 /* Medal colors */
 #leaderboard .first-place {
