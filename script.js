@@ -53,55 +53,7 @@ function updateLeaderboardPage() {
   updateIndicators();
 }
 
-function buildIndicators() {
-  indicatorsEl.innerHTML = '';
-  const totalPages = Math.ceil(leaderboardEl.children.length / itemsPerPage);
-  for (let i = 0; i < totalPages; i++) {
-    const dot = document.createElement('span');
-    dot.classList.add('indicator-dot');
-    if (i === currentPage) dot.classList.add('active');
-    dot.addEventListener('click', () => {
-      currentPage = i;
-      updateLeaderboardPage();
-    });
-    indicatorsEl.appendChild(dot);
-  }
-}
 
-function updateIndicators() {
-  const dots = indicatorsEl.querySelectorAll('.indicator-dot');
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === currentPage);
-  });
-}
-
-function nextPage() {
-  const totalPages = Math.ceil(leaderboardEl.children.length / itemsPerPage);
-  currentPage = (currentPage + 1) % totalPages;
-  updateLeaderboardPage();
-}
-
-function prevPage() {
-  const totalPages = Math.ceil(leaderboardEl.children.length / itemsPerPage);
-  currentPage = (currentPage - 1 + totalPages) % totalPages;
-  updateLeaderboardPage();
-}
-
-prevBtn.addEventListener('click', prevPage);
-nextBtn.addEventListener('click', nextPage);
-
-// Swipe support (mobile)
-let touchStartY = 0;
-leaderboardContainer.addEventListener('touchstart', e => {
-  touchStartY = e.touches[0].clientY;
-});
-leaderboardContainer.addEventListener('touchend', e => {
-  const touchEndY = e.changedTouches[0].clientY;
-  const diff = touchStartY - touchEndY;
-  if (Math.abs(diff) > 30) {
-    if (diff > 0) nextPage(); else prevPage();
-  }
-});
 
 // Fetch leaderboard on page load
 fetch(`${API_BASE}/leaderboard`)
