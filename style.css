@@ -336,7 +336,7 @@ h1 {
 
 /* Special hole label styling */
 #hole-special {
-  font-size: 1.4rem; /* Reduced from 2rem */
+  font-size: 1.15rem; /* Reduced from 2rem */
   font-weight: bold;
   color: var(--forest-green);
 }
