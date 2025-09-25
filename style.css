@@ -343,18 +343,17 @@ h1 {
 
 /* Hole progress dots */
 #hole-progress {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 6px;
+  text-align: center;
   margin: 10px 0;
 }
 
 .progress-dot {
+  display: inline-block;
   width: 14px;
   height: 14px;
+  margin: 4px;
   border-radius: 50%;
-  background: white; /* default = not filled */
+  background: white; /* default = no score */
   border: 2px solid var(--forest-green);
   transition: background 0.3s ease;
 }

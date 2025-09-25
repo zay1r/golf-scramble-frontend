@@ -164,13 +164,17 @@ function renderHoleProgress() {
   if (!container) return;
 
   container.innerHTML = '';
-  holes.forEach(hole => {
+  holes.forEach((hole, index) => {
     const dot = document.createElement('span');
     dot.classList.add('progress-dot');
     if (savedScores[hole.id]) {
       dot.classList.add('filled');
     }
     container.appendChild(dot);
+    //add line break after every 9 dots
+    if ((index + 1) % 9 === 0) {
+      container.appendChild(document.createElement('br'));
+    }
   });
 }
 
