@@ -67,6 +67,48 @@ socket.on('leaderboardUpdate', (data) => {
   renderLeaderboard(data);
 });
 
+// -------------------- Toggle / Slider between Leaderboard and Scoreboard --------------------
+const slider = document.getElementById('slider');
+const btnLeaderboard = document.getElementById('show-leaderboard');
+const btnScoreboard = document.getElementById('show-scoreboard');
+
+let currentView = 0; // 0 = leaderboard, 1 = scoreboard
+
+function updateSlider() {
+  slider.style.transform = `translateX(-${currentView * 100}%)`;
+  btnLeaderboard.classList.toggle('active', currentView === 0);
+  btnScoreboard.classList.toggle('active', currentView === 1);
+}
+
+btnLeaderboard.addEventListener('click', () => {
+  currentView = 0;
+  updateSlider();
+});
+
+btnScoreboard.addEventListener('click', () => {
+  currentView = 1;
+  updateSlider();
+});
+
+// Swipe support for mobile
+let startX = 0;
+slider.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+});
+slider.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].clientX - startX;
+  if (Math.abs(diff) > 50) {
+    if (diff < 0 && currentView < 1) currentView++; // swipe left
+    if (diff > 0 && currentView > 0) currentView--; // swipe right
+    updateSlider();
+  }
+});
+
+// Initialize slider position
+updateSlider();
+
+
+
 // -------------------- Login --------------------
 const loginForm = document.getElementById('login-form');
 const loginSection = document.getElementById('login-section');

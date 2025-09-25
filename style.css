@@ -362,6 +362,54 @@ h1 {
   background: var(--forest-green); /* filled = score submitted */
 }
 
+/* === Toggle buttons for switching views === */
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.toggle-buttons button {
+  flex: 1;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  background: var(--sandstone);
+  color: var(--bark-brown);
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.toggle-buttons button.active {
+  background: var(--forest-green);
+  color: white;
+}
+
+/* === Slider wrapper for Leaderboard & Scoreboard === */
+.slider-wrapper {
+  display: flex;
+  width: 200%; /* two pages side by side */
+  transition: transform 0.4s ease-in-out;
+}
+
+.slider-page {
+  width: 100%;
+  flex-shrink: 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Optional: On larger screens, show both side by side instead of sliding */
+@media (min-width: 900px) {
+  .slider-wrapper {
+    width: 100%;
+    transform: none !important; /* disable sliding */
+  }
+  .slider-page {
+    width: 50%; /* two pages side by side */
+  }
+}
 
 
 /* Responsive tweaks 
