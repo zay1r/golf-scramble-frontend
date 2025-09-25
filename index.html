@@ -20,59 +20,56 @@
     <button id="show-scoreboard">Scorecard</button>
   </div>
 
-  <!-- Slider wrapper -->
-  <div class="slider-wrapper" id="slider">
-    <!-- Leaderboard page -->
-    <div class="slider-page">
-      <div id="main-container">
-        <ul id="leaderboard"></ul>
-        <div id="leaderboard-indicators">
-          <button class="leaderboard-nav" id="leaderboard-prev">&#10094;</button>
-          <button class="leaderboard-nav" id="leaderboard-next">&#10095;</button>
-        </div>
+  <!-- Leaderboard page -->
+  <div class="slider-page leaderboard-page">
+    <div id="main-container">
+      <ul id="leaderboard"></ul>
+      <div id="leaderboard-indicators">
+        <button class="leaderboard-nav" id="leaderboard-prev">&#10094;</button>
+        <button class="leaderboard-nav" id="leaderboard-next">&#10095;</button>
       </div>
     </div>
+  </div>
 
-    <!-- Scoreboard page -->
-    <div class="slider-page">
-      <!-- Login Section -->
-      <section id="login-section">
-        <h2>Team Login</h2>
-        <form id="login-form">
-          <select id="team_name" required>
-            <option value="">Select your team</option>
-          </select>
-          <input type="password" id="pin" placeholder="PIN" required />
-          <button type="submit">Login</button>
-        </form>
-      </section>
+  <!-- Scoreboard page -->
+  <div class="slider-page scoreboard-page">
+    <!-- Login Section -->
+    <section id="login-section">
+      <h2>Team Login</h2>
+      <form id="login-form">
+        <select id="team_name" required>
+          <option value="">Select your team</option>
+        </select>
+        <input type="password" id="pin" placeholder="PIN" required />
+        <button type="submit">Login</button>
+      </form>
+    </section>
 
-      <!-- Score Submission Section -->
-      <section id="score-section" style="display:none;">
-        <form id="score-form">
-          <h2>Submit Score</h2>
-          <p><strong>Hole:</strong> <span id="hole-number"></span></p>
-          <p><strong>Par:</strong> <span id="hole-par"></span></p>
-          <p><strong>Distance:</strong> <span id="hole-distance"></span> yards</p>
-          <p><strong>Special:</strong> <span id="hole-special"></span></p>
+    <!-- Score Submission Section -->
+    <section id="score-section" style="display:none;">
+      <form id="score-form">
+        <h2>Submit Score</h2>
+        <p><strong>Hole:</strong> <span id="hole-number"></span></p>
+        <p><strong>Par:</strong> <span id="hole-par"></span></p>
+        <p><strong>Distance:</strong> <span id="hole-distance"></span> yards</p>
+        <p><strong>Special:</strong> <span id="hole-special"></span></p>
 
-          <!-- Hole progress dots -->
-          <div id="hole-progress"></div>
+        <!-- Hole progress dots -->
+        <div id="hole-progress"></div>
 
-          <div class="nav-buttons">
-            <button type="button" id="prev-hole">&#10094; Previous Hole</button>
-            <button type="button" id="next-hole">Next Hole &#10095;</button>
-          </div>
+        <div class="nav-buttons">
+          <button type="button" id="prev-hole">&#10094; Previous Hole</button>
+          <button type="button" id="next-hole">Next Hole &#10095;</button>
+        </div>
 
-          <label for="strokes-value">Strokes</label>
-          <div class="stroke-buttons">
-            <button type="button" id="decrement-strokes">−</button>
-            <span id="strokes-value"></span>
-            <button type="button" id="increment-strokes">+</button>
-          </div>
-        </form>
-      </section>
-    </div>
+        <label for="strokes-value">Strokes</label>
+        <div class="stroke-buttons">
+          <button type="button" id="decrement-strokes">−</button>
+          <span id="strokes-value"></span>
+          <button type="button" id="increment-strokes">+</button>
+        </div>
+      </form>
+    </section>
   </div>
 
   <!-- Link to external JS -->

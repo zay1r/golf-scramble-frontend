@@ -363,6 +363,7 @@ h1 {
 }
 
 /* === Toggle buttons for switching views === */
+/* Toggle buttons */
 .toggle-buttons {
   display: flex;
   justify-content: center;
@@ -386,30 +387,13 @@ h1 {
   color: white;
 }
 
-/* === Slider wrapper for Leaderboard & Scoreboard === */
-.slider-wrapper {
-  display: flex;
-  width: 200%; /* two pages side by side */
-  transition: transform 0.4s ease-in-out;
-}
-
+/* Pages */
 .slider-page {
+  display: none; /* hidden by default, JS will show the active one */
   width: 100%;
-  flex-shrink: 0;
-  padding: 10px;
   box-sizing: border-box;
 }
 
-/* Optional: On larger screens, show both side by side instead of sliding */
-@media (min-width: 900px) {
-  .slider-wrapper {
-    width: 100%;
-    transform: none !important; /* disable sliding */
-  }
-  .slider-page {
-    width: 50%; /* two pages side by side */
-  }
-}
 
 
 /* Responsive tweaks 

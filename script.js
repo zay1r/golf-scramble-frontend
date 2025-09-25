@@ -68,44 +68,31 @@ socket.on('leaderboardUpdate', (data) => {
 });
 
 // -------------------- Toggle / Slider between Leaderboard and Scoreboard --------------------
-const slider = document.getElementById('slider');
+// -------------------- Toggle between Leaderboard and Scoreboard --------------------
 const btnLeaderboard = document.getElementById('show-leaderboard');
 const btnScoreboard = document.getElementById('show-scoreboard');
+const leaderboardPage = document.querySelector('.slider-page.leaderboard-page');
+const scoreboardPage = document.querySelector('.slider-page.scoreboard-page');
 
-let currentView = 0; // 0 = leaderboard, 1 = scoreboard
-
-function updateSlider() {
-  slider.style.transform = `translateX(-${currentView * 100}%)`;
-  btnLeaderboard.classList.toggle('active', currentView === 0);
-  btnScoreboard.classList.toggle('active', currentView === 1);
+function showLeaderboard() {
+  leaderboardPage.style.display = 'block';
+  scoreboardPage.style.display = 'none';
+  btnLeaderboard.classList.add('active');
+  btnScoreboard.classList.remove('active');
 }
 
-btnLeaderboard.addEventListener('click', () => {
-  currentView = 0;
-  updateSlider();
-});
+function showScoreboard() {
+  leaderboardPage.style.display = 'none';
+  scoreboardPage.style.display = 'block';
+  btnLeaderboard.classList.remove('active');
+  btnScoreboard.classList.add('active');
+}
 
-btnScoreboard.addEventListener('click', () => {
-  currentView = 1;
-  updateSlider();
-});
+btnLeaderboard.addEventListener('click', showLeaderboard);
+btnScoreboard.addEventListener('click', showScoreboard);
 
-// Swipe support for mobile
-let startX = 0;
-slider.addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-});
-slider.addEventListener('touchend', e => {
-  const diff = e.changedTouches[0].clientX - startX;
-  if (Math.abs(diff) > 50) {
-    if (diff < 0 && currentView < 1) currentView++; // swipe left
-    if (diff > 0 && currentView > 0) currentView--; // swipe right
-    updateSlider();
-  }
-});
-
-// Initialize slider position
-updateSlider();
+// Initialize with leaderboard visible
+showLeaderboard();
 
 
 
