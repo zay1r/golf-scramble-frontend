@@ -158,6 +158,22 @@ async function loadHoles() {
   }
 }
 
+// -------------------- Hole Progress Dots --------------------
+function renderHoleProgress() {
+  const container = document.getElementById('hole-progress');
+  if (!container) return;
+
+  container.innerHTML = '';
+  holes.forEach(hole => {
+    const dot = document.createElement('span');
+    dot.classList.add('progress-dot');
+    if (savedScores[hole.id]) {
+      dot.classList.add('filled');
+    }
+    container.appendChild(dot);
+  });
+}
+
 function displayHole() {
   const hole = holes[currentHoleIndex];
   if (!hole) {
@@ -169,18 +185,36 @@ function displayHole() {
   document.getElementById('hole-distance').textContent = hole.distance || 'N/A';
   document.getElementById('hole-special').textContent = hole.special_label || '';
 
-  const startingStrokes = savedScores[hole.id] || hole.par;
-  strokesValueEl.textContent = startingStrokes;
+  // Show saved score if exists, otherwise blank
+  if (savedScores[hole.id]) {
+    strokesValueEl.textContent = savedScores[hole.id];
+  } else {
+    strokesValueEl.textContent = '';
+  }
+
+  // Refresh progress dots
+  renderHoleProgress();
 }
 
 // Increment/decrement buttons
 document.getElementById('increment-strokes').addEventListener('click', () => {
+  const hole = holes[currentHoleIndex];
   let current = parseInt(strokesValueEl.textContent, 10);
+
+  if (isNaN(current)) {
+    current = hole.par; // initialize with par on first click
+  }
   strokesValueEl.textContent = current + 1;
 });
 
 document.getElementById('decrement-strokes').addEventListener('click', () => {
+  const hole = holes[currentHoleIndex];
   let current = parseInt(strokesValueEl.textContent, 10);
+
+  if (isNaN(current)) {
+    current = hole.par; // initialize with par on first click
+  }
+
   if (current > 1) {
     strokesValueEl.textContent = current - 1;
   }
@@ -206,6 +240,9 @@ async function submitScore() {
     if (!res.ok) throw new Error('Score submission failed');
     savedScores[hole.id] = strokes;
     console.log(`Score submitted for Hole ${hole.hole_number}: ${strokes} strokes`);
+
+    // Refresh progress dots after saving
+    renderHoleProgress();
   } catch (err) {
     console.error(err);
     alert('Error submitting score.');
@@ -233,4 +270,3 @@ document.getElementById('next-hole').addEventListener('click', async () => {
   }
   displayHole();
 });
-

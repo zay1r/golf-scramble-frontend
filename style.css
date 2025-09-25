@@ -341,6 +341,27 @@ h1 {
   color: var(--forest-green);
 }
 
+/* Hole progress dots */
+#hole-progress {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.progress-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white; /* default = not filled */
+  border: 2px solid var(--forest-green);
+  transition: background 0.3s ease;
+}
+
+.progress-dot.filled {
+  background: var(--forest-green); /* filled = score submitted */
+}
 
 
 
