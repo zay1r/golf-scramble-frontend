@@ -364,7 +364,7 @@ h1 {
 }
 
 .progress-dot.score-equal {
-  background: var(--bark-brown);  /* equal to par */
+  background: var(--gold);  /* equal to par */
 }
 
 .progress-dot.score-worse {
