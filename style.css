@@ -360,11 +360,11 @@ h1 {
 
 /* Score relative to par */
 .progress-dot.score-better {
-  background: var(--gold);   /* better than par */
+  background: var(--forest-green);   /* better than par */
 }
 
 .progress-dot.score-equal {
-  background: var(--forest-green);  /* equal to par */
+  background: var(--bark-brown);  /* equal to par */
 }
 
 .progress-dot.score-worse {
