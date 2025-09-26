@@ -196,16 +196,28 @@ function renderHoleProgress() {
   holes.forEach((hole, index) => {
     const dot = document.createElement('span');
     dot.classList.add('progress-dot');
-    if (savedScores[hole.id]) {
-      dot.classList.add('filled');
+
+    const strokes = savedScores[hole.id];
+    if (strokes) {
+      // Compare strokes to par
+      if (strokes < hole.par) {
+        dot.classList.add('score-better'); // under par
+      } else if (strokes === hole.par) {
+        dot.classList.add('score-equal'); // par
+      } else {
+        dot.classList.add('score-worse'); // over par
+      }
     }
+
     container.appendChild(dot);
-    //add line break after every 9 dots
+
+    // Add line break after every 9 dots
     if ((index + 1) % 9 === 0) {
       container.appendChild(document.createElement('br'));
     }
   });
 }
+
 
 function displayHole() {
   const hole = holes[currentHoleIndex];

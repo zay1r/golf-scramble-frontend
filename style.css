@@ -25,7 +25,7 @@ html, body {
 .score-negative { color: green; font-weight: bold; }
 .score-zero     { color: var(--bark-brown); font-weight: bold; }
 
-/* === Leaderboard navigation buttons (desktop only) === */
+/* === Leaderboard navigation buttons (desktop only) === 
 .leaderboard-nav {
   display: none;
   position: absolute;
@@ -51,7 +51,7 @@ html, body {
 @media (min-width: 768px) {
   .leaderboard-nav { display: block; }
 }
-
+*/
 
 /* Main container for leaderboard + other sections */
 #main-container {
@@ -358,9 +358,32 @@ h1 {
   transition: background 0.3s ease;
 }
 
-.progress-dot.filled {
-  background: var(--forest-green); /* filled = score submitted */
+/* Score relative to par */
+.progress-dot.score-better {
+  background: var(--gold);   /* better than par */
 }
+
+.progress-dot.score-equal {
+  background: var(--forest-green);  /* equal to par */
+}
+
+.progress-dot.score-worse {
+  background: red;    /* worse than par */
+}
+
+/*
+.progress-dot.filled {
+  background: var(--forest-green);}  filled = score submitted 
+  :root {
+  --forest-green: #228B22;
+  --sandstone: #E6D5B8;
+  --sky-blue: #A7C7E7;
+  --bark-brown: #5C4033;
+  --cream: #FAF9F6;
+  --gold: #D4AF37;
+  
+  */
+
 
 /* === Toggle buttons for switching views === */
 /* Toggle buttons */
